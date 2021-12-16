@@ -1,7 +1,6 @@
 //Imported
 import java.util.ArrayList;
 import java.util.Scanner;
-java.lang.Long;
 
 class Main {
 
@@ -28,6 +27,7 @@ class Main {
     Item temp;
     ArrayList<String> sort = new ArrayList<String>();
     String name;
+    String itemNum0;
     char option = ' ';
     long itemNum = 0;
     int numItems = 0;
@@ -51,31 +51,67 @@ class Main {
       }
     }
 
-    //Name,Item Number, Price, and Quantity for Items
-    for(int i = 0;i < numItems;i++){
-      try{
+    // Name, Item Number, Price, and Quantity for Items
+    for (int i = 0; i < numItems; i++) {
+      System.out.println("Item #" + (i + 1));
 
-        System.out.println("Item #" + (i+1));
-        System.out.print("  Name: ");
-        name = scan.nextLine();
-        if(name.isEmpty()||name.isBlank()){
-          throw new Exception ();
+      while (true) {
+        try {
+          System.out.print("  Name: ");
+          name = scan.nextLine();
+
+          // Handling
+          if (name.isEmpty() || name.isBlank()) {
+            throw new Exception();
+          }
+          break;
         }
-
-        System.out.print("  Price: $");
-        price = Float.parseFloat(scan.nextLine());
-
-        System.out.print("  Quantity: ");
-        quantity = Integer.parseInt(scan.nextLine());
-
-        items.add(new Item(name, price, quantity));
-        sort.add(new String(name));
+        catch (Exception e) {
+          System.out.println("Please Enter a Valid Input");
+        }
       }
 
-      catch (Exception e){
-        System.out.println("Please Enter a Valid Input");
-        i--;
+      while (true) {
+        try {
+          System.out.print("  Item Number: ");
+          itemNum0 = scan.nextLine();
+          itemNum = Long.parseLong(itemNum0);
+
+          // Handling
+          if (itemNum0.length() != 10) {
+            throw new Exception();
+          }
+          break;
+        }
+        catch (Exception e) {
+          System.out.println("Please Enter a 10 Digit Item Number");
+        }
       }
+
+      while (true) {
+        try {
+          System.out.print("  Price: $");
+          price = Float.parseFloat(scan.nextLine());
+          break;
+        }
+        catch (Exception e) {
+          System.out.println("Please Enter a Valid Input");
+        }
+      }
+
+      while (true) {
+        try {
+          System.out.print("  Quantity: ");
+          quantity = Integer.parseInt(scan.nextLine());
+          break;
+        }
+        catch (Exception e) {
+          System.out.println("Please Enter a Valid Input");
+        }
+      }
+
+      items.add(new Item(name, itemNum, price, quantity));
+      sort.add(new String(name));
     }
 
     //Menu Loop*******************************
@@ -96,7 +132,7 @@ class Main {
       total = 0;
       for(int i=0; i<items.size(); i++){
         total = total + taxMethod(items.get(i).getPrice(), items.get(i).getQuantity());
-      }    //nvm I fixed it, thank you for trying anyways
+      }
       System.out.printf("%n%s%40s%-14.2f%s%n", "|" + ANSI_BLUE_BACKGROUND, "Total: $", total, ANSI_RESET + "|");
       for(int i = 0;i < 56;i++){
         System.out.print("-");
@@ -124,27 +160,67 @@ class Main {
         }
 
         for(int i = 0;i < numItems;i++){
-          try{
-            System.out.println("Item #" + (items.size()+1));
-            System.out.print("  Name: ");
-            name = scan.nextLine();
-            if(name.isEmpty()||name.isBlank()){
-              throw new Exception ();
+          System.out.println("Item #" + (items.size() + 1));
+
+          while (true) {
+            try {
+              System.out.print("  Name: ");
+              name = scan.nextLine();
+
+              // Handling
+              if (name.isEmpty() || name.isBlank()) {
+                throw new Exception();
+              }
+              break;
             }
-
-            System.out.print("  Price: $");
-            price = Float.parseFloat(scan.nextLine());
-
-            System.out.print("  Quantity: ");
-            quantity = Integer.parseInt(scan.nextLine());
-
-            items.add(new Item(name, price, quantity));
+            catch (Exception e) {
+              System.out.println("Please Enter a Valid Input");
+            }
           }
 
-          catch (Exception e){
-            System.out.println("Please Enter a Valid Input");
-            i--;
+          while (true) {
+            try {
+              System.out.print("  Item Number: ");
+              itemNum0 = scan.nextLine();
+              itemNum = Long.parseLong(itemNum0);
+
+              // Handling
+              if (itemNum0.length() != 10) {
+              throw new Exception();
+              }
+              break;
+            }
+            catch (Exception e) {
+              System.out.println("Please Enter a 10 Digit Item Number");
+            }
           }
+
+          while (true) {
+            try {
+              System.out.print("  Price: $");
+              price = Float.parseFloat(scan.nextLine());
+              break;
+            }
+            //Handling
+            catch (Exception e) {
+              System.out.println("Please Enter a Valid Input");
+            }
+          }
+
+          while (true) {
+            try {
+              System.out.print("  Quantity: ");
+              quantity = Integer.parseInt(scan.nextLine());
+              break;
+            }
+            //Handling
+            catch (Exception e) {
+              System.out.println("Please Enter a Valid Input");
+            }
+          }
+
+          items.add(new Item(name, itemNum, price, quantity));
+          sort.add(new String(name));
         }
       }
 
