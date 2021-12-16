@@ -7,6 +7,7 @@ public class Item{
 
   public Item(String name, long itemNum, float price, int quantity){
     this.name = name;
+    this.itemNum = itemNum;
     this.price = price;
     this.quantity = quantity;
   }

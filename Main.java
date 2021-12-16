@@ -118,14 +118,14 @@ class Main {
     while(Character.toUpperCase(option) != 'D'){
 
       //Inventory Output
-      for(int i = 0;i < 56;i++){
+      for(int i = 0;i < 69;i++){
         System.out.print("-");
       }
-      System.out.printf("%n%s%-17s%-20s%-12s%-12s%s", "|", ANSI_RED_BACKGROUND + ANSI_WHITE + " Item", "Name", "Quantity", "Price After Tax", ANSI_RESET + "|");
+      System.out.printf("%n%s%-17s%-13s%-20s%-12s%-12s%s", "|", ANSI_RED_BACKGROUND + ANSI_WHITE + " Item", "Item Number", "Name", "Quantity", "Price After Tax", ANSI_RESET + "|");
 
       //Objects Loop
       for(int i = 1;i < items.size()+1;i++){
-        System.out.printf("%n%s%-7s%-5d%-20s%-12s%s%-14s%s", "|", ANSI_BLUE_BACKGROUND + " #", i, items.get(i-1).getName(), items.get(i-1).getQuantity(), "$", taxMethod(items.get(i-1).getPrice(), items.get(i-1).getQuantity()), ANSI_RESET + "|");
+        System.out.printf("%n%s%-7s%-5d%-13s%-20s%-12s%s%-14s%s", "|", ANSI_BLUE_BACKGROUND + " #", i, items.get(i-1).getItemNum(), items.get(i-1).getName(), items.get(i-1).getQuantity(), "$", taxMethod(items.get(i-1).getPrice(), items.get(i-1).getQuantity()), ANSI_RESET + "|");
       }
 
       //Total
@@ -133,15 +133,13 @@ class Main {
       for(int i=0; i<items.size(); i++){
         total = total + taxMethod(items.get(i).getPrice(), items.get(i).getQuantity());
       }
-      System.out.printf("%n%s%40s%-14.2f%s%n", "|" + ANSI_BLUE_BACKGROUND, "Total: $", total, ANSI_RESET + "|");
-      for(int i = 0;i < 56;i++){
+      System.out.printf("%n%s%53s%-14.2f%s%n", "|" + ANSI_BLUE_BACKGROUND, "Total: $", total, ANSI_RESET + "|");
+      for(int i = 0;i < 69;i++){
         System.out.print("-");
       }
 
-      System.out.println(items.size());
-
       //Modification Options
-      System.out.printf("%n%-34s%n%-33s%n%-24s%n", ANSI_BLACK_BACKGROUND + ANSI_RED + "Modifications", ANSI_RESET + ANSI_BLACK_BACKGROUND + "  A. Add to Inventory", "  B. Exit");
+      System.out.printf("%n%-34s%n%-33s%n%-24s%n%-24s%n%-24s%n", ANSI_BLACK_BACKGROUND + ANSI_RED + "Modifications", ANSI_RESET + ANSI_BLACK_BACKGROUND + "  A. Add to Inventory", "  B. Sort by Name", "  C. Sort by Price", "  D. Exit");
       System.out.print(ANSI_RESET + "Option: ");
       option = scan.nextLine().charAt(0);
 
